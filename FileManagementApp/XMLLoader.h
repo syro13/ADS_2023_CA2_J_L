@@ -17,6 +17,7 @@ class XMLLoader
 template <class T>
 XMLLoader<T>::XMLLoader(T& fileName)
 {
+	this->fileName = &fileName;
 }
 
 template <class T>
