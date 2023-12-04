@@ -1,27 +1,3 @@
-﻿  pch.cpp
-  FileManagementTest.cpp
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\Stack\Stack.h(2,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  (compiling source file '/FileManagementTest.cpp')
-  
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(39,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file '/FileManagementTest.cpp')
-  C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(39,24):
-  the template instantiation context (the oldest one first) is
-  	C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementTest\FileManagementTest.cpp(20,22):
-  	see reference to class template instantiation 'XMLLoader<std::string>' being compiled
-  	C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(26,1):
-  	while compiling class template member function 'bool XMLLoader<std::string>::load(void)'
-  		C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementTest\FileManagementTest.cpp(28,20):
-  		see the first reference to 'XMLLoader<std::string>::load' in 'FileManagementTest::FileManagementTest::TestLoad'
-  
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(40,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file '/FileManagementTest.cpp')
-  
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(51,42): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file '/FileManagementTest.cpp')
-  
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(52,42): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file '/FileManagementTest.cpp')
-  
+﻿  FileManagementTest.cpp
      Creating library C:\Program Files\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementTest.lib and object C:\Program Files\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementTest.exp
   FileManagementTest.vcxproj -> C:\Program Files\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementTest.dll

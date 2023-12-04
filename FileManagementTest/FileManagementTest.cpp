@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../FileManagementApp/XMLLoader.h"
-#include <iostream>
-#include <fstream>
 #include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -25,7 +23,7 @@ namespace FileManagementTest
 		{
 			string fileName = "test.xml";
 			XMLLoader<string> XMLFile(fileName);
-			Assert::AreEqual(true, XMLFile.load());
+			Assert::AreEqual(XMLFile.load(), true);
 		}
 	};
 }
