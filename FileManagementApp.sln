@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileManagementApp", "FileMa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileManagementTest", "FileManagementTest\FileManagementTest.vcxproj", "{4CDDB44C-0757-4F64-9944-0A1E596510C4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stacks and Queues", "Stacks and Queues\Stacks and Queues.vcxproj", "{8DBDC3D0-038D-4BA5-9928-F24F36A97DA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{4CDDB44C-0757-4F64-9944-0A1E596510C4}.Release|x64.Build.0 = Release|x64
 		{4CDDB44C-0757-4F64-9944-0A1E596510C4}.Release|x86.ActiveCfg = Release|Win32
 		{4CDDB44C-0757-4F64-9944-0A1E596510C4}.Release|x86.Build.0 = Release|Win32
+		{8DBDC3D0-038D-4BA5-9928-F24F36A97DA6}.Debug|x64.ActiveCfg = Debug|x64
+		{8DBDC3D0-038D-4BA5-9928-F24F36A97DA6}.Debug|x64.Build.0 = Debug|x64
+		{8DBDC3D0-038D-4BA5-9928-F24F36A97DA6}.Debug|x86.ActiveCfg = Debug|Win32
+		{8DBDC3D0-038D-4BA5-9928-F24F36A97DA6}.Debug|x86.Build.0 = Debug|Win32
+		{8DBDC3D0-038D-4BA5-9928-F24F36A97DA6}.Release|x64.ActiveCfg = Release|x64
+		{8DBDC3D0-038D-4BA5-9928-F24F36A97DA6}.Release|x64.Build.0 = Release|x64
+		{8DBDC3D0-038D-4BA5-9928-F24F36A97DA6}.Release|x86.ActiveCfg = Release|Win32
+		{8DBDC3D0-038D-4BA5-9928-F24F36A97DA6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
