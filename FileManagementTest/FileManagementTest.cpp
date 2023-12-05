@@ -53,7 +53,7 @@ namespace FileManagementTest
 		TEST_METHOD(TestFileGetSetLength) {
 			string length = "testLength";
 			File file = File();
-			file.setName(length);
+			file.setLength(length);
 			Assert::AreEqual(length.c_str(), file.getLength().c_str());
 		}
 		TEST_METHOD(TestFileGetSetType) {

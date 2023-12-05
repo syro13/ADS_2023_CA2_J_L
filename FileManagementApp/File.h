@@ -20,30 +20,35 @@ public:
 };
 
 File::File() {
+	name = "";
+	length = "";
+	type = "";
 }
 File::File(string name, string length, string type) {
-
+	this->name = name;
+	this->length = length;
+	this->type = type;
 }
 void File::setName(string name) {
-
+	this->name = name;
 }
 
-void File::setLength(string lenght) {
-
+void File::setLength(string length) {
+	this->length = length;
 }
 
 void File::setType(string type) {
-
+	this->type = type;
 }
 
 string File::getName() {
-	return false;
+	return this->name;
 }
 
 string File::getLength() {
-	return false;
+	return this->length;
 }
 
 string File::getType() {
-	return false;
+	return this->type;
 }
