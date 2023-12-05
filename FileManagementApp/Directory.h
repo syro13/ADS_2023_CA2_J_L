@@ -14,14 +14,18 @@ class Directory {
 };
 
 Directory::Directory() {
+	name = "";
 }
 
 Directory::Directory(string name) {
+	this->name = name;
 }
 
 void Directory::setName(string name) {
+	this->name = name;
 }
 
 string Directory::getName() {
-	return false;
+	return name;
 }
+

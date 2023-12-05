@@ -19,5 +19,4 @@ C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(55,42): w
 C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(56,42): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file '/FileManagementTest.cpp')
   
-     Creating library C:\Program Files\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementTest.lib and object C:\Program Files\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementTest.exp
   FileManagementTest.vcxproj -> C:\Program Files\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementTest.dll
