@@ -4,6 +4,7 @@
 #include <string>
 #include "../Stack/Stack.h"
 #include "../Trees/Tree.h"
+#include "../Trees/TreeIterator.h"
 
 using namespace std;
 
@@ -49,7 +50,7 @@ bool XMLLoader<T>::load()
 				stack.push(tag);
 			}
             if(closingTag != line.length() - 1)
-			{
+			{ 
 				string content = line.substr(closingTag + 1, line.length() - closingTag - 1);
                 openingTag = content.find("<");
                 closingTag = content.find(">");
@@ -93,4 +94,30 @@ bool XMLLoader<T>::load()
 
 template <class T>
 void XMLLoader<T>::makeTree() {
+    /*fileTree = new Tree<T>();
+    TreeIterator<T> *treeIterator = new TreeIterator<T>(fileTree);
+    string line;
+    ifstream myfile(fileName->c_str());
+
+    if (!myfile.is_open())
+    {
+        cout << "Unable to open file: " << fileName << endl;
+        return false;
+    }
+
+    while (myfile, line) {
+        int openingTag = line.find("<");
+        int closingTag = line.find(">");
+        string tag = line.substr(openingTag + 1, closingTag - openingTag - 1);
+        if (tag[0] != '/') {
+            treeIterator.childBack();
+		}
+        if (tag == "dir") {
+			treeIterator.addChild(tag);
+        }
+        if (tag == "file") {
+            treeIterator.addChild(tag);
+		}
+    }*/
+
 }

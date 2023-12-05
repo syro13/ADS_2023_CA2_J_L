@@ -1,6 +1,8 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "../FileManagementApp/XMLLoader.h"
+#include "../FileManagementApp/File.h"
+#include "../FileManagementApp/Directory.h"
 #include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -32,7 +34,33 @@ namespace FileManagementTest
 			XMLFile.load();
 			XMLFile.makeTree();
 			Assert::AreEqual(true, XMLFile.fileTree->count() > 0);
-
+		}
+		TEST_METHOD(TestFileConstructor) {
+			string name = "testName";
+			string length = "testLength";
+			string type = "testType";
+			File file = File(name, length, type);
+			Assert::AreEqual(name.c_str(), file.getName().c_str());
+			Assert::AreEqual(length.c_str(), file.getLength().c_str());
+			Assert::AreEqual(type.c_str(), file.getType().c_str());
+		}
+		TEST_METHOD(TestFileGetSetName) {
+			string name = "testName";
+			File file = File();
+			file.setName(name);
+			Assert::AreEqual(name.c_str(), file.getName().c_str());
+		}
+		TEST_METHOD(TestFileGetSetLength) {
+			string length = "testLength";
+			File file = File();
+			file.setName(length);
+			Assert::AreEqual(length.c_str(), file.getLength().c_str());
+		}
+		TEST_METHOD(TestFileGetSetType) {
+			string type = "testType";
+			File file = File();
+			file.setType(type);
+			Assert::AreEqual(type.c_str(), file.getType().c_str());
 		}
 	};
 }
