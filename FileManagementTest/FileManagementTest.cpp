@@ -62,5 +62,16 @@ namespace FileManagementTest
 			file.setType(type);
 			Assert::AreEqual(type.c_str(), file.getType().c_str());
 		}
+		TEST_METHOD(TestDirectoryConstructor) {
+			string name = "testName";
+			Directory directory = Directory(name);
+			Assert::AreEqual(name.c_str(), directory.getName().c_str());
+		}
+		TEST_METHOD(TestDirectoryGetSetName) {
+			string name = "testName";
+			Directory directory = Directory();
+			directory.setName(name);
+			Assert::AreEqual(name.c_str(), directory.getName().c_str());
+		}
 	};
 }
