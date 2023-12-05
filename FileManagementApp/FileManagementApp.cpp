@@ -2,10 +2,18 @@
 //
 
 #include <iostream>
+#include <fstream>
+#include <string>
+#include "XMLLoader.h"
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	string fileName = "test.xml";
+	XMLLoader<string> XMLFile(fileName);
+	bool result = XMLFile.load();
+	cout << "Result: " << result << endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

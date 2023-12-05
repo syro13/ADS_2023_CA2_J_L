@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "../Stack/Stack.h"
+#include "../Trees/Tree.h"
 
 using namespace std;
 
@@ -10,8 +12,10 @@ class XMLLoader
 {
 	public:
 	T* fileName;
+    Tree<T> *fileTree;
 	XMLLoader(T& fileName);
 	bool load();
+    void makeTree();
 };
 
 template <class T>
@@ -23,9 +27,6 @@ XMLLoader<T>::XMLLoader(T& fileName)
 template <class T>
 bool XMLLoader<T>::load()
 {
-<<<<<<< Updated upstream
-	return false;
-=======
     MyStack<string> stack;
     string line;
     ifstream myfile(fileName->c_str());
@@ -88,5 +89,8 @@ bool XMLLoader<T>::load()
         cout << "Error: Mismatched tags in XML" << endl;
         return false;
     }
->>>>>>> Stashed changes
+}
+
+template <class T>
+void XMLLoader<T>::makeTree() {
 }

@@ -23,7 +23,16 @@ namespace FileManagementTest
 		{
 			string fileName = "test.xml";
 			XMLLoader<string> XMLFile(fileName);
-			Assert::AreEqual(XMLFile.load(), true);
+			Assert::AreEqual(true, XMLFile.load());
+		}
+		TEST_METHOD(TestMakeTree)
+		{
+			string fileName = "test.xml";
+			XMLLoader<string> XMLFile(fileName);
+			XMLFile.load();
+			XMLFile.makeTree();
+			Assert::AreEqual(true, XMLFile.fileTree->count() > 0);
+
 		}
 	};
 }
