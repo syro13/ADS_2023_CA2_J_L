@@ -14,6 +14,7 @@ int main()
 	XMLLoader<string> XMLFile(fileName);
 	bool result = XMLFile.load();
 	cout << "Result: " << result << endl;
+	XMLFile.makeTree();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

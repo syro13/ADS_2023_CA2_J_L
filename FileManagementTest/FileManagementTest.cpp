@@ -3,6 +3,8 @@
 #include "../FileManagementApp/XMLLoader.h"
 #include "../FileManagementApp/File.h"
 #include "../FileManagementApp/Directory.h"
+#include "../Trees/Tree.h"
+#include "../Trees/TreeIterator.h"
 #include <string>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -73,5 +75,58 @@ namespace FileManagementTest
 			directory.setName(name);
 			Assert::AreEqual(name.c_str(), directory.getName().c_str());
 		}
+		TEST_METHOD(TestAppendDirectory) {
+			string testName = "testName";
+			Directory * directory = new Directory(testName);
+			Tree<Directory *>* tree = new Tree<Directory *>(directory);
+			string testAppendName = "testAppendName";
+			Directory * appendDirectory = new Directory(testAppendName);
+			TreeIterator<Directory*> iter(tree);
+			iter.appendChildDirectory(appendDirectory);
+			Assert::AreEqual(testAppendName.c_str(), iter.item()->getName().c_str());
+		}
+		TEST_METHOD(TestPrependDirectory) {
+			string testName = "testName";
+			Directory * directory = new Directory(testName);
+			Tree<Directory *>* tree = new Tree<Directory *>(directory);
+			string testPrependName = "testPrependName";
+			Directory * prependDirectory = new Directory(testPrependName);
+			TreeIterator<Directory*> iter(tree);
+			iter.prependChildDirectory(prependDirectory);
+			Assert::AreEqual(testPrependName.c_str(), iter.item()->getName().c_str());
+		}
+		TEST_METHOD(TestAppendFile) {
+			string testName = "testName";
+			string testLength = "testLength";
+			string testType = "testType";
+			File * file = new File(testName, testLength, testType);
+			Tree<File*>* tree = new Tree<File*>(file);
+			string testAppendName = "testAppendName";
+			string testAppendLength = "testAppendLength";
+			string testAppendType = "testAppendType";
+			File * appendFile = new File(testAppendName, testAppendLength, testAppendType);
+			TreeIterator<File*> iter(tree);
+			iter.appendChildFile(appendFile);
+			Assert::AreEqual(testAppendName.c_str(), iter.item()->getName().c_str());
+			Assert::AreEqual(testAppendLength.c_str(), iter.item()->getLength().c_str());
+			Assert::AreEqual(testAppendType.c_str(), iter.item()->getType().c_str());
+		}
+		TEST_METHOD(TestPrependFile) {
+			string testName = "testName";
+			string testLength = "testLength";
+			string testType = "testType";
+			File * file = new File(testName, testLength, testType);
+			Tree<File*>* tree = new Tree<File*>(file);
+			string testPrependName = "testPrependName";
+			string testPrependLength = "testPrependLength";
+			string testPrependType = "testPrependType";
+			File * prependFile = new File(testPrependName, testPrependLength, testPrependType);
+			TreeIterator<File*> iter(tree);
+			iter.prependChildFile(prependFile);
+			Assert::AreEqual(testPrependName.c_str(), iter.item()->getName().c_str());
+			Assert::AreEqual(testPrependLength.c_str(), iter.item()->getLength().c_str());
+			Assert::AreEqual(testPrependType.c_str(), iter.item()->getType().c_str());
+		}
+
 	};
 }

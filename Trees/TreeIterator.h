@@ -1,5 +1,7 @@
 #pragma once
 #include "Tree.h"
+#include "..\FileManagementApp\Directory.h"
+#include "..\FileManagementApp\File.h"
 
 template <class T>
 class TreeIterator
@@ -23,6 +25,10 @@ public:
 	void insertChildAfter(T item);
 	void removeChild();
 	bool childValid();
+	void appendChildDirectory(Directory * item);
+	void prependChildDirectory(Directory * item);
+	void appendChildFile(File * item);
+	void prependChildFile(File * item);
 	T childItem();
 	T item();
 };
@@ -178,4 +184,28 @@ template <class T>
 T TreeIterator<T>::item()
 {
 	return node->data;
+}
+
+template <class T>
+void TreeIterator<T>::appendChildDirectory(Directory * item)
+{
+	
+}
+
+template <class T>
+void TreeIterator<T>::prependChildDirectory(Directory * item)
+{
+	
+}
+
+template <class T>
+void TreeIterator<T>::appendChildFile(File * item)
+{
+	
+}
+
+template <class T>
+void TreeIterator<T>::prependChildFile(File * item)
+{
+	
 }

@@ -1,9 +1,11 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "TreeNode.h"
+
 using namespace std;
 
-class File
+class File : public TreeNode
 {
 	string name;
 	string length;

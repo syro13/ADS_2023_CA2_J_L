@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="Directory.h" />
     <ClInclude Include="File.h" />
+    <ClInclude Include="TreeNode.h" />
     <ClInclude Include="XMLLoader.h" />
   </ItemGroup>
   <ItemGroup>
