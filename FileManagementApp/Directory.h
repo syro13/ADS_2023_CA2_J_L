@@ -44,21 +44,42 @@ void Directory::print() {
 }
 
 void Directory::addFile(File* file) {
+	files.push_back(file);
 }
 
 void Directory::removeFile(File* file) {
+	for (int i = 0; i < files.size(); i++) {
+		if (files[i] == file) {
+			files.erase(files.begin() + i);
+		}
+	}
+
 }
 
 void Directory::removeFile(string name) {
+	for (int i = 0; i < files.size(); i++) {
+		if (files[i]->getName() == name) {
+			files.erase(files.begin() + i);
+		}
+	}
+
 }
 
 void Directory::printFiles() {
+	for (int i = 0; i < files.size(); i++) {
+		cout << "File: " << files[i]->getName() << endl;
+	}
 }
 
 int Directory::getFilesCount() {
-	return false;
+	return files.size();
 }
 
 File* Directory::getFile(string name) {
-	return nullptr;
+	for (int i = 0; i < files.size(); i++) {
+		if (files[i]->getName() == name) {
+			return files[i];
+		}
+	}
+	return NULL;
 }

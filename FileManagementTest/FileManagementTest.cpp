@@ -82,9 +82,9 @@ namespace FileManagementTest
 			File* file = new File(name, length, type);
 			Directory directory = Directory();
 			directory.addFile(file);
-			Assert::AreEqual(name, directory.getFile(0)->getName());
-			Assert::AreEqual(length, directory.getFile(0)->getLength());
-			Assert::AreEqual(type, directory.getFile(0)->getType());
+			Assert::AreEqual(name, directory.getFile(name)->getName());
+			Assert::AreEqual(length, directory.getFile(name)->getLength());
+			Assert::AreEqual(type, directory.getFile(name)->getType());
 		}
 		TEST_METHOD(TestDirectoryGetFile) {
 			string name = "testName";
@@ -93,9 +93,9 @@ namespace FileManagementTest
 			File* file = new File(name, length, type);
 			Directory directory = Directory();
 			directory.addFile(file);
-			Assert::AreEqual(name, directory.getFile(0)->getName());
-			Assert::AreEqual(length, directory.getFile(0)->getLength());
-			Assert::AreEqual(type, directory.getFile(0)->getType());
+			Assert::AreEqual(name, directory.getFile(name)->getName());
+			Assert::AreEqual(length, directory.getFile(name)->getLength());
+			Assert::AreEqual(type, directory.getFile(name)->getType());
 		}
 		TEST_METHOD(TestDirectoryGetFileCount) {
 			string name = "testName";

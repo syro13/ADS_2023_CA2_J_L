@@ -1,2 +1,5 @@
 ﻿  FileManagementApp.cpp
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\Directory.h(75,19): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'FileManagementApp.cpp')
+  
   FileManagementApp.vcxproj -> C:\Program Files\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementApp.exe
