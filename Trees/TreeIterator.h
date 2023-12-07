@@ -1,13 +1,11 @@
 #pragma once
 #include "Tree.h"
-#include "..\FileManagementApp\Directory.h"
-#include "..\FileManagementApp\File.h"
 
 template <class T>
 class TreeIterator
 {
-public:	
-	Tree<T> *node;
+public:
+	Tree<T>* node;
 	DListIterator<Tree<T>*> childIter;
 
 	TreeIterator(Tree<T>* root);
@@ -25,10 +23,6 @@ public:
 	void insertChildAfter(T item);
 	void removeChild();
 	bool childValid();
-	void appendChildDirectory(Directory * item);
-	void prependChildDirectory(Directory * item);
-	void appendChildFile(File * item);
-	void prependChildFile(File * item);
 	T childItem();
 	T item();
 };
@@ -69,7 +63,7 @@ void TreeIterator<T>::up()
 	if (node->parent != nullptr)
 	{
 		node = node->parent;
-		
+
 	}
 	resetIterator();
 }
@@ -80,7 +74,7 @@ void TreeIterator<T>::down()
 	if (childIter.isValid())
 	{
 		node = childIter.item();
-		
+
 	}
 	resetIterator();
 }
@@ -142,17 +136,17 @@ void TreeIterator<T>::prependChild(T item)
 template <class T>
 void TreeIterator<T>::insertChildBefore(T item)
 {
-	Tree<T> *temp = new Tree<T>(item);
+	Tree<T>* temp = new Tree<T>(item);
 	temp->parent = node;
 	node->children->insert(childIter, temp);
-	
+
 }
 
 template <class T>
 void TreeIterator<T>::insertChildAfter(T item)
 {
 
-	Tree<T> *temp = new Tree<T>(item);
+	Tree<T>* temp = new Tree<T>(item);
 	temp->parent = node;
 	childIter.advance();
 	node->children->insert(childIter, temp);
@@ -165,7 +159,7 @@ template <class T>
 void TreeIterator<T>::removeChild()
 {
 	childIter = node->children->remove(childIter);
-	
+
 }
 
 template <class T>
@@ -184,28 +178,4 @@ template <class T>
 T TreeIterator<T>::item()
 {
 	return node->data;
-}
-
-template <class T>
-void TreeIterator<T>::appendChildDirectory(Directory * item)
-{
-	
-}
-
-template <class T>
-void TreeIterator<T>::prependChildDirectory(Directory * item)
-{
-	
-}
-
-template <class T>
-void TreeIterator<T>::appendChildFile(File * item)
-{
-	
-}
-
-template <class T>
-void TreeIterator<T>::prependChildFile(File * item)
-{
-	
 }

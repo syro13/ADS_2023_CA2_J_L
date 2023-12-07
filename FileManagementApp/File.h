@@ -7,18 +7,18 @@ using namespace std;
 
 class File : public TreeNode
 {
-	string name;
 	string length;
 	string type;
 public:
 	File();
 	File(string name, string length, string type);
-	void setName(string name);
+	void setName(string name) override;
 	void setLength(string length);
 	void setType(string type);
-	string getName();
+	string getName() override;
 	string getLength();
 	string getType();
+	void print() override;
 };
 
 File::File() {
@@ -53,4 +53,8 @@ string File::getLength() {
 
 string File::getType() {
 	return this->type;
+}
+
+void File::print() {
+	cout << "File: " << name << " " << length << " " << type << endl;
 }

@@ -20,7 +20,7 @@ namespace FileManagementTest
 		{
 			string fileName = "test.xml";
 			XMLLoader<string> XMLFile(fileName);
-			Assert::AreEqual(XMLFile.fileName->c_str(), fileName.c_str());
+			Assert::AreEqual(XMLFile.getFileName(), fileName);
 		}
 
 		TEST_METHOD(TestLoad)
@@ -42,91 +42,91 @@ namespace FileManagementTest
 			string length = "testLength";
 			string type = "testType";
 			File file = File(name, length, type);
-			Assert::AreEqual(name.c_str(), file.getName().c_str());
-			Assert::AreEqual(length.c_str(), file.getLength().c_str());
-			Assert::AreEqual(type.c_str(), file.getType().c_str());
+			Assert::AreEqual(name, file.getName());
+			Assert::AreEqual(length, file.getLength());
+			Assert::AreEqual(type, file.getType());
 		}
 		TEST_METHOD(TestFileGetSetName) {
 			string name = "testName";
 			File file = File();
 			file.setName(name);
-			Assert::AreEqual(name.c_str(), file.getName().c_str());
+			Assert::AreEqual(name, file.getName());
 		}
 		TEST_METHOD(TestFileGetSetLength) {
 			string length = "testLength";
 			File file = File();
 			file.setLength(length);
-			Assert::AreEqual(length.c_str(), file.getLength().c_str());
+			Assert::AreEqual(length, file.getLength());
 		}
 		TEST_METHOD(TestFileGetSetType) {
 			string type = "testType";
 			File file = File();
 			file.setType(type);
-			Assert::AreEqual(type.c_str(), file.getType().c_str());
+			Assert::AreEqual(type, file.getType());
 		}
 		TEST_METHOD(TestDirectoryConstructor) {
 			string name = "testName";
 			Directory directory = Directory(name);
-			Assert::AreEqual(name.c_str(), directory.getName().c_str());
+			Assert::AreEqual(name, directory.getName());
 		}
 		TEST_METHOD(TestDirectoryGetSetName) {
 			string name = "testName";
 			Directory directory = Directory();
 			directory.setName(name);
-			Assert::AreEqual(name.c_str(), directory.getName().c_str());
+			Assert::AreEqual(name, directory.getName());
 		}
-		TEST_METHOD(TestAppendDirectory) {
-			string testName = "testName";
-			Directory * directory = new Directory(testName);
-			Tree<Directory *>* tree = new Tree<Directory *>(directory);
-			string testAppendName = "testAppendName";
-			Directory * appendDirectory = new Directory(testAppendName);
-			TreeIterator<Directory*> iter(tree);
-			iter.appendChildDirectory(appendDirectory);
-			Assert::AreEqual(testAppendName.c_str(), iter.item()->getName().c_str());
+		TEST_METHOD(TestDirectoryAddFile) {
+			string name = "testName";
+			string length = "testLength";
+			string type = "testType";
+			File* file = new File(name, length, type);
+			Directory directory = Directory();
+			directory.addFile(file);
+			Assert::AreEqual(name, directory.getFile(0)->getName());
+			Assert::AreEqual(length, directory.getFile(0)->getLength());
+			Assert::AreEqual(type, directory.getFile(0)->getType());
 		}
-		TEST_METHOD(TestPrependDirectory) {
-			string testName = "testName";
-			Directory * directory = new Directory(testName);
-			Tree<Directory *>* tree = new Tree<Directory *>(directory);
-			string testPrependName = "testPrependName";
-			Directory * prependDirectory = new Directory(testPrependName);
-			TreeIterator<Directory*> iter(tree);
-			iter.prependChildDirectory(prependDirectory);
-			Assert::AreEqual(testPrependName.c_str(), iter.item()->getName().c_str());
+		TEST_METHOD(TestDirectoryGetFile) {
+			string name = "testName";
+			string length = "testLength";
+			string type = "testType";
+			File* file = new File(name, length, type);
+			Directory directory = Directory();
+			directory.addFile(file);
+			Assert::AreEqual(name, directory.getFile(0)->getName());
+			Assert::AreEqual(length, directory.getFile(0)->getLength());
+			Assert::AreEqual(type, directory.getFile(0)->getType());
 		}
-		TEST_METHOD(TestAppendFile) {
-			string testName = "testName";
-			string testLength = "testLength";
-			string testType = "testType";
-			File * file = new File(testName, testLength, testType);
-			Tree<File*>* tree = new Tree<File*>(file);
-			string testAppendName = "testAppendName";
-			string testAppendLength = "testAppendLength";
-			string testAppendType = "testAppendType";
-			File * appendFile = new File(testAppendName, testAppendLength, testAppendType);
-			TreeIterator<File*> iter(tree);
-			iter.appendChildFile(appendFile);
-			Assert::AreEqual(testAppendName.c_str(), iter.item()->getName().c_str());
-			Assert::AreEqual(testAppendLength.c_str(), iter.item()->getLength().c_str());
-			Assert::AreEqual(testAppendType.c_str(), iter.item()->getType().c_str());
+		TEST_METHOD(TestDirectoryGetFileCount) {
+			string name = "testName";
+			string length = "testLength";
+			string type = "testType";
+			File* file = new File(name, length, type);
+			Directory directory = Directory();
+			directory.addFile(file);
+			Assert::AreEqual(1, directory.getFilesCount());
 		}
-		TEST_METHOD(TestPrependFile) {
-			string testName = "testName";
-			string testLength = "testLength";
-			string testType = "testType";
-			File * file = new File(testName, testLength, testType);
-			Tree<File*>* tree = new Tree<File*>(file);
-			string testPrependName = "testPrependName";
-			string testPrependLength = "testPrependLength";
-			string testPrependType = "testPrependType";
-			File * prependFile = new File(testPrependName, testPrependLength, testPrependType);
-			TreeIterator<File*> iter(tree);
-			iter.prependChildFile(prependFile);
-			Assert::AreEqual(testPrependName.c_str(), iter.item()->getName().c_str());
-			Assert::AreEqual(testPrependLength.c_str(), iter.item()->getLength().c_str());
-			Assert::AreEqual(testPrependType.c_str(), iter.item()->getType().c_str());
+		TEST_METHOD(TestDirectoryRemoveFileByName) {
+			string name = "testName";
+			string length = "testLength";
+			string type = "testType";
+			File* file = new File(name, length, type);
+			Directory directory = Directory();
+			directory.addFile(file);
+			Assert::AreEqual(1, directory.getFilesCount());
+			directory.removeFile("testName");
+			Assert::AreEqual(0, directory.getFilesCount());
 		}
-
+		TEST_METHOD(TestDirectoryRemoveFileByFile) {
+			string name = "testName";
+			string length = "testLength";
+			string type = "testType";
+			File* file = new File(name, length, type);
+			Directory directory = Directory();
+			directory.addFile(file);
+			Assert::AreEqual(1, directory.getFilesCount());
+			directory.removeFile(file);
+			Assert::AreEqual(0, directory.getFilesCount());
+		}
 	};
 }

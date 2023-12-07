@@ -5,6 +5,9 @@
 #include "../Stack/Stack.h"
 #include "../Trees/Tree.h"
 #include "../Trees/TreeIterator.h"
+#include "File.h"
+#include "Directory.h"
+#include "TreeNode.h"
 
 using namespace std;
 
@@ -12,17 +15,21 @@ template <class T>
 class XMLLoader
 {
 	public:
-	T* fileName;
-    Tree<T> *fileTree;
-	XMLLoader(T& fileName);
+	string fileName;
+    Tree<Directory> *fileTree;
+	XMLLoader(string fileName);
+    string getFileName() { return fileName; }
+    void setFileName(string fileName) { this->fileName = fileName; }
 	bool load();
     void makeTree();
 };
 
 template <class T>
-XMLLoader<T>::XMLLoader(T& fileName)
+XMLLoader<T>::XMLLoader(string fileName)
 {
-	this->fileName = &fileName;
+	this->fileName = fileName;
+    Directory root("Root");
+    fileTree = new Tree<Directory>(root);
 }
 
 template <class T>
@@ -30,7 +37,7 @@ bool XMLLoader<T>::load()
 {
     MyStack<string> stack;
     string line;
-    ifstream myfile(fileName->c_str());
+    ifstream myfile(fileName);
 
     if (!myfile.is_open())
     { 
@@ -40,13 +47,11 @@ bool XMLLoader<T>::load()
 
     while (getline(myfile, line))
     {
-        int openingTag = line.find("<");
-        int closingTag = line.find(">");
+        size_t openingTag = line.find("<");
+        size_t closingTag = line.find(">");
         if (openingTag != -1 && closingTag != -1) {
             string tag = line.substr(openingTag + 1, closingTag - openingTag - 1);
-            cout << "Tag: " << tag << endl;
             if (tag[0] != '/') {
-				cout << "Pushing: " << tag << endl;
 				stack.push(tag);
 			}
             if(closingTag != line.length() - 1)
@@ -56,22 +61,14 @@ bool XMLLoader<T>::load()
                 closingTag = content.find(">");
                 if (openingTag != -1 && closingTag != -1) {
 					string tag = content.substr(openingTag + 1, closingTag - openingTag - 1);
-                    cout << "Tag: " << tag << endl;
                     if (tag[0] == '/' && tag.substr(1, tag.length() -1) == stack.top()) {
-                        cout << "Popping: " << tag.substr(1, tag.length() -1) << endl;
                         stack.pop();
                     }
 				}
             }
             if (tag[0] == '/' && tag.substr(1, tag.length()) == stack.top()) {
-                    cout << "Popping: " << tag.substr(0, tag.length() - 1) << endl;
                     stack.pop();
             }
-            //cout << "---------------------------------------------------" << endl;
-            //cout << "           tag " << tag << endl;
-            //cout << "           tag substring " << tag.substr(0, tag.length()) << endl;
-            //cout << "           stack.top() " << stack.top() << endl;
-            //cout << "---------------------------------------------------" << endl;
             
         }
         
@@ -94,30 +91,66 @@ bool XMLLoader<T>::load()
 
 template <class T>
 void XMLLoader<T>::makeTree() {
-    /*fileTree = new Tree<T>();
-    TreeIterator<T> *treeIterator = new TreeIterator<T>(fileTree);
+    /*TreeIterator* iter = new TreeIterator(fileTree);
+    Directory* currentDir = nullptr;
+    File* currentFile = nullptr;
     string line;
-    ifstream myfile(fileName->c_str());
+    string prevTag;
+    ifstream myfile(fileName);
 
     if (!myfile.is_open())
     {
-        cout << "Unable to open file: " << fileName << endl;
-        return false;
-    }
+		cout << "Unable to open file: " << fileName << endl;
+		return;
+	}
 
-    while (myfile, line) {
-        int openingTag = line.find("<");
-        int closingTag = line.find(">");
-        string tag = line.substr(openingTag + 1, closingTag - openingTag - 1);
-        if (tag[0] != '/') {
-            treeIterator.childBack();
-		}
-        if (tag == "dir") {
-			treeIterator.addChild(tag);
+    while (getline(myfile, line)) {
+        size_t openingTag = line.find("<");
+		size_t closingTag = line.find(">");
+        if (openingTag != -1 && closingTag != -1) {
+			string tag = line.substr(openingTag + 1, closingTag - openingTag - 1);
+            cout << "Tag: " << tag << endl;
+            if (tag == "dir") {
+                prevTag = tag;
+                cout << "prevTag: " << prevTag << endl;
+                currentDir = new Directory();
+                iter->appendChild(currentDir);
+                iter->childForth();
+                iter->down();
+            }
+            else if (tag == "file") {
+                prevTag = tag;
+                cout << "prevTag: " << prevTag << endl;
+                currentFile = new File();
+                iter->appendChild(currentFile);
+                iter->childForth();
+                iter->down();
+            }
+            else if (tag == "name" && currentDir != nullptr && prevTag == "dir") {
+                string content = line.substr(closingTag + 1, line.length() - closingTag - 1);
+                currentDir->setName(content);
+                cout << "name: " << content << endl;
+            }
+            else if (tag == "name" && prevTag == "file") {
+                string content = line.substr(closingTag + 1, line.length() - closingTag - 1);
+                currentFile->setName(content);
+                cout << "name: " << content << endl;
+            }
+            else if (tag == "length" && prevTag == "file") {
+                string content = line.substr(closingTag + 1, line.length() - closingTag - 1);
+                currentFile->setLength(content);
+                cout << "length: " << content << endl;
+            }
+            else if (tag == "type" && prevTag == "file") {
+                string content = line.substr(closingTag + 1, line.length() - closingTag - 1);
+                currentFile->setType(content);
+                cout << "type: " << content << endl;
+            }
+            else if(tag == "/dir" || tag == "/file") {
+				iter->up();
+				iter->childForth();
+			}
         }
-        if (tag == "file") {
-            treeIterator.addChild(tag);
-		}
-    }*/
-
+    }
+    */
 }

@@ -10,12 +10,14 @@ using namespace std;
 
 int main()
 {
-	string fileName = "test.xml";
-	XMLLoader<string> XMLFile(fileName);
-	bool result = XMLFile.load();
-	cout << "Result: " << result << endl;
-	XMLFile.makeTree();
+	string filename = "test.xml";
+	XMLLoader<string> xmlfile(filename);
+	bool result = xmlfile.load();
+	cout << "result: " << result << endl;
+	xmlfile.makeTree();
 }
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu

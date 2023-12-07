@@ -4,12 +4,11 @@
 template<class T>
 class Tree
 {
-public: 
+public:
 	T data;
-	Tree<T> *parent;
-	DList<Tree<T>*> *children;
+	Tree<T>* parent;
+	DList<Tree<T>*>* children;
 	Tree(T item);
-	Tree();
 	int count();
 	T getData();
 };
@@ -18,14 +17,6 @@ T Tree<T>::getData()
 {
 	return data;
 }
-
-template <class T>
-Tree<T>::Tree()
-{
-	children = new DList<Tree<T>*>();
-	parent = nullptr;
-}
-
 template <class T>
 Tree<T>::Tree(T item)
 {
