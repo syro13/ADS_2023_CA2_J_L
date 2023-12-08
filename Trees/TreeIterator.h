@@ -1,6 +1,7 @@
 #pragma once
 #include "Tree.h"
 #include "../FileManagementApp/Directory.h"
+#include "../FileManagementApp/File.h"
 
 template <class T>
 class TreeIterator
@@ -26,6 +27,9 @@ public:
 	bool childValid();
 	T childItem();
 	T item();
+	void addToVector(File* file);
+	string getFilesNames();
+	string getNodeInfo();
 };
 template <class T>
 TreeIterator<T>::TreeIterator(Tree<T>* root)
@@ -179,4 +183,33 @@ template <class T>
 T TreeIterator<T>::item()
 {
 	return node->data;
+}
+
+template <class T>
+void TreeIterator<T>::addToVector(File* file)
+{
+	childIter.item()->data.files.push_back(file);
+}
+
+template <class T>
+string TreeIterator<T>::getFilesNames()
+{
+	string names = "";
+	if (childIter.item() != nullptr) {
+		for (int i = 0; i < childIter.item()->data.files.size(); i++)
+		{
+				names += childIter.item()->data.files[i]->getName() + "\n";
+		}
+	}
+	return names;
+}
+
+template <class T>
+string TreeIterator<T>::getNodeInfo()
+{
+	string info = "";
+	info += "Name: " + childIter.item()->data.getName() + "\n";
+	info += "Files: \n";
+	info += getFilesNames();
+	return info;
 }

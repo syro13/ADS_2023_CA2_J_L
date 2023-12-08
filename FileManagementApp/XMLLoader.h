@@ -96,6 +96,7 @@ bool XMLLoader<T>::load()
 template <class T>
 void XMLLoader<T>::makeTree() {
     TreeIterator<Directory> iter(fileTree);
+    File file("","","");
     string prevTag;
     string line;
     ifstream myfile(fileName);
@@ -107,13 +108,48 @@ void XMLLoader<T>::makeTree() {
             string tag = line.substr(openingTag + 1, closingTag - openingTag - 1);
             if (tag == "dir") {
                 prevTag = tag;
+                iter.childForth();
+                iter.down();
+                iter.down();
+            }
+            if (tag == "file") {
+                prevTag = tag;
             }
             if (tag == "name" && prevTag == "dir") {
 				string content = line.substr(closingTag + 1, line.length() - closingTag - 1);
-				Directory dir(content);
+                int openingTag = content.find("<");
+                string name = content.substr(0, openingTag);
+				Directory dir(name);
 				iter.appendChild(dir);
-				iter.childForth();
 				prevTag = tag;
+            }
+            if (tag == "name" && prevTag == "file") {
+                string content = line.substr(closingTag + 1, line.length() - closingTag - 1);
+                int openingTag = content.find("<");
+                string name = content.substr(0, openingTag);
+                file.setName(name);
+            }
+            if (tag == "length" && prevTag == "file") {
+                string content = line.substr(closingTag + 1, line.length() - closingTag - 1);
+				int openingTag = content.find("<");
+				string length = content.substr(0, openingTag);
+				file.setLength(length);
+            }
+            if (tag == "type" && prevTag == "file") {
+                string content = line.substr(closingTag + 1, line.length() - closingTag - 1);
+                int openingTag = content.find("<");
+                string type = content.substr(0, openingTag);
+                file.setType(type);
+            }
+            if (tag == "/file") {
+				iter.addToVector(&file);
+				prevTag = tag;
+
+			}
+            if (tag == "/dir") {
+                iter.childBack();
+                iter.up();
+                iter.up();
             }
         }
     }

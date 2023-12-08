@@ -2,6 +2,11 @@
 	<name>ADS_Single_LinkedList_Exercises</name>
 	<dir>
 		<name>.git</name>
+		<file>
+			<name>config</name>
+			<length>353 b</length>
+			<type>config</type>
+		</file>
 	</dir>
 	<dir>
 		<name>.vs</name>

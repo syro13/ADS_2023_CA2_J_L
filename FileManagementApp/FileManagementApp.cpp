@@ -31,7 +31,7 @@ void printTree(Tree<Directory>* tree) {
 }
 
 void displayTree(TreeIterator<Directory> iter, string indent) {
-	cout << indent << iter.item().getName();
+	cout << indent << iter.getNodeInfo();
 	if (iter.childValid())
 	{
 		cout << "(" << endl;
@@ -49,8 +49,7 @@ void displayTree(TreeIterator<Directory> iter, string indent) {
 
 void printTreeStructure(TreeIterator<Directory> iter)
 {
-	cout << iter.item().getName() << endl;
-	cout << iter.item().getFilesNames() << endl;
+	cout << iter.getNodeInfo() << endl;
 	iter.childForth();
 	while (!iter.childValid())
 	{
@@ -68,24 +67,20 @@ int main()
 	bool result = xmlfile.load();
 	cout << "result: " << result << endl;
 	xmlfile.makeTree();
-	//TreeIterator<Directory> iter(xmlfile.fileTree);
+	TreeIterator<Directory> iter2(xmlfile.fileTree);
 	//xmlfile.printTreeStructure(iter);
 	//xmlfile.printFiles(iter);
-	Tree<Directory>* root = new Tree<Directory>(Directory("root"));
+	/*Tree<Directory>* root = new Tree<Directory>(Directory("root"));
 	TreeIterator<Directory> iter(root);
 	iter.appendChild(Directory("dir1"));
 	iter.childForth();
-	iter.childForth();
 	iter.down();
-	iter.root();
+	iter.down();
 	iter.appendChild(Directory("dir2"));
 	iter.childForth();
 	iter.down(); 
-	cout << iter.item().getName() << endl;
 	iter.item().addFile(new File("testN", "testL", "testT"));
-	files = iter.item().files;
 	iter.item().addFile(new File("testN2", "testL2", "testT2"));
-	cout << iter.item().getFilesNames() << endl;
 	iter.appendChild(Directory("dir3"));
 	iter.appendChild(Directory("dir4"));
 	iter.childForth();
@@ -93,13 +88,10 @@ int main()
 	iter.appendChild(Directory("dir5"));
 	iter.appendChild(Directory("dir6"));
 	iter.root();
-	files.push_back(new File("testN3", "testL3", "testT3"));
-	cout << "files start here" << endl;
-	for (int i = 0; i < files.size(); i++) {
-		cout << files[i]->getName() << endl;
-	}
-	cout << "files end here" << endl;
-	displayTree(iter, "");
+	files.push_back(new File("testN3", "testL3", "testT3"));*/
+	//displayTree(iter, "");
+	displayTree(iter2, "");
+	//printTree(root);
 }
 
 

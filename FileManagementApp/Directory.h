@@ -23,6 +23,7 @@ class Directory {
 		File* getFile(string name);
 		File* getFile(int index);
 		string getFilesNames();
+		vector<File*>& getFiles();
 };
 
 Directory::Directory() {
@@ -47,7 +48,7 @@ void Directory::print() {
 
 void Directory::addFile(File* file) {
 	cout << "Adding file: " << file->getName() << " to Directory: " << this->name << endl;
-	this->files.push_back(file);
+	files.push_back(file);
 	cout << "File count: " << files.size() << endl;
 }
 
@@ -71,9 +72,8 @@ void Directory::removeFile(string name) {
 
 void Directory::printFiles() {
 	cout << "Files: " << endl;
-	for (int i = 0; i < this->files.size(); i++) {
-		cout << i << ". " << this->files[i]->getName() << endl;
-
+	for (const auto& file : files) {
+		cout << "File: " << file->getName() << endl;
 	}
 }
 
@@ -101,4 +101,8 @@ string Directory::getFilesNames() {
 		names += (*it)->getName() + "\n";
 	}
 	return names;
+}
+
+vector<File*>& Directory::getFiles() {
+	return files;
 }
