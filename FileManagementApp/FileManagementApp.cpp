@@ -4,17 +4,102 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "XMLLoader.h"
+#include "../Trees/Tree.h"
+#include "../Trees/TreeIterator.h"
+#include "Directory.h"
+#include "File.h"
+
 
 using namespace std;
 
-int main()
+void printTree(Tree<Directory>* tree) {
+	TreeIterator<Directory> iterator(tree);
+	if (iterator.childValid()) {
+		while (iterator.childValid()) {
+			Directory directory = iterator.childItem();
+			directory.print();
+			cout << "files: " << endl;
+			directory.printFiles();
+			iterator.childForth();
+		}
+	}
+	else {
+		cout << "No children" << endl;
+	}
+}
+
+void displayTree(TreeIterator<Directory> iter, string indent) {
+	cout << indent << iter.item().getName();
+	if (iter.childValid())
+	{
+		cout << "(" << endl;
+
+		while (iter.childValid())
+		{
+			TreeIterator<Directory> iter2(iter.childIter.currentNode->data);
+			displayTree(iter2, "\t" + indent);
+			iter.childForth();
+		}
+		cout << indent << ")";
+	}
+	cout << endl;
+}
+
+void printTreeStructure(TreeIterator<Directory> iter)
 {
+	cout << iter.item().getName() << endl;
+	cout << iter.item().getFilesNames() << endl;
+	iter.childForth();
+	while (!iter.childValid())
+	{
+		printTreeStructure(iter);
+		iter.childForth();
+	}
+	iter.childBack();
+}
+
+int main()
+{ 
+	vector<File*> files = vector<File*>();
 	string filename = "test.xml";
 	XMLLoader<string> xmlfile(filename);
 	bool result = xmlfile.load();
 	cout << "result: " << result << endl;
 	xmlfile.makeTree();
+	//TreeIterator<Directory> iter(xmlfile.fileTree);
+	//xmlfile.printTreeStructure(iter);
+	//xmlfile.printFiles(iter);
+	Tree<Directory>* root = new Tree<Directory>(Directory("root"));
+	TreeIterator<Directory> iter(root);
+	iter.appendChild(Directory("dir1"));
+	iter.childForth();
+	iter.childForth();
+	iter.down();
+	iter.root();
+	iter.appendChild(Directory("dir2"));
+	iter.childForth();
+	iter.down(); 
+	cout << iter.item().getName() << endl;
+	iter.item().addFile(new File("testN", "testL", "testT"));
+	files = iter.item().files;
+	iter.item().addFile(new File("testN2", "testL2", "testT2"));
+	cout << iter.item().getFilesNames() << endl;
+	iter.appendChild(Directory("dir3"));
+	iter.appendChild(Directory("dir4"));
+	iter.childForth();
+	iter.down();
+	iter.appendChild(Directory("dir5"));
+	iter.appendChild(Directory("dir6"));
+	iter.root();
+	files.push_back(new File("testN3", "testL3", "testT3"));
+	cout << "files start here" << endl;
+	for (int i = 0; i < files.size(); i++) {
+		cout << files[i]->getName() << endl;
+	}
+	cout << "files end here" << endl;
+	displayTree(iter, "");
 }
 
 

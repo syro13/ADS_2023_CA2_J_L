@@ -1,5 +1,6 @@
 #pragma once
 #include "Tree.h"
+#include "../FileManagementApp/Directory.h"
 
 template <class T>
 class TreeIterator
@@ -171,7 +172,7 @@ bool TreeIterator<T>::childValid()
 template <class T>
 T TreeIterator<T>::childItem()
 {
-	return childIter->node->data;
+	return childIter.item()->data;
 }
 
 template <class T>
