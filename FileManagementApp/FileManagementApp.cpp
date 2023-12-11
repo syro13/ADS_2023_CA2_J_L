@@ -59,6 +59,37 @@ int main()
 			break;
 		}
 		case 2: {
+			string dirName;
+			int count = 0;
+			cout << "Enter the name of the directory: ";
+			cin >> dirName;
+			queue<Tree<Directory>*> queue;
+			queue.push(xmlfile.fileTree);
+			while (!queue.empty())
+			{
+				DListIterator<Tree<Directory>*> iter = queue.front()->children->getIterator();
+				while (iter.isValid())
+				{
+					queue.push(iter.item());
+					iter.advance();
+				}
+				if (queue.front()->data.getName() == dirName) {
+					TreeIterator<Directory> iter(queue.front());
+					cout << iter.getNodeInfo("") << endl;
+					count += queue.front()->data.getFilesCount();
+					if (iter.childValid()) {
+						iter.down();
+						while (iter.childValid()) {
+							cout << iter.getNodeInfo("\t") << endl;
+							count++;
+							count += iter.item().getFilesCount();
+							iter.down();
+						}
+					}
+				}
+				queue.pop();
+			}
+			cout << "Total files & folders: " << count << endl;
 			break;
 		}
 		case 3: {
