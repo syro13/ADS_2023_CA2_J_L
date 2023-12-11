@@ -2,11 +2,11 @@
 C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\Directory.h(81,19): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(105,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(97,31): message : while compiling class template member function 'void XMLLoader<std::string>::makeTree(void)'
-C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(69,18): message : see the first reference to 'XMLLoader<std::string>::makeTree' in 'main'
-C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(66,20): message : see reference to class template instantiation 'XMLLoader<std::string>' being compiled
+C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(41,18): message : see the first reference to 'XMLLoader<std::string>::makeTree' in 'main'
+C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(39,20): message : see reference to class template instantiation 'XMLLoader<std::string>' being compiled
 C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(106,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(121,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(129,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(135,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(141,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(120,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(137,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(143,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(149,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   FileManagementApp.vcxproj -> C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementApp.exe

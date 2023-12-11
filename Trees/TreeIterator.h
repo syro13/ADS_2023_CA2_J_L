@@ -28,8 +28,8 @@ public:
 	T childItem();
 	T& item();
 	void addToVector(File* file);
-	string getFilesNames();
-	string getNodeInfo();
+	string getFilesNames(string indent);
+	string getNodeInfo(string indent);
 };
 template <class T>
 TreeIterator<T>::TreeIterator(Tree<T>* root)
@@ -193,22 +193,25 @@ void TreeIterator<Directory>::addToVector(File* file)
 	childIter.item()->data.addFile(file);
 }
 
-string TreeIterator<Directory>::getFilesNames()
+string TreeIterator<Directory>::getFilesNames(string indent)
 {
 	string names = "";
 	for (int i = 0; i < item().files.size(); i++)
 	{
-		names += item().files[i]->getName() + "\n";
+		names += indent + item().files[i]->getName() + " <" + item().files[i]->getLength() + "> " + item().files[i]->getType() + "\n";
 	}
 	
 	return names;
 }
 
-string TreeIterator<Directory>::getNodeInfo()
+string TreeIterator<Directory>::getNodeInfo(string indent)
 {
 	string info = "";
-	info += "Name: " + item().getName() + "\n";
-	info += "Files: \n";
-	info += getFilesNames();
+	info += "Folder: " + item().getName() + "\n";
+	info += indent + "Files: \n";
+	if(item().getFilesCount() == 0)
+		info += indent + "No files in this folder\n";
+	else
+		info += getFilesNames(indent);
 	return info;
 }

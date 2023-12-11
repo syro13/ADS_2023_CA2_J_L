@@ -31,7 +31,7 @@ XMLLoader<T>::XMLLoader(string fileName)
 {
 	this->fileName = fileName;
     Directory root("Root");
-    fileTree = new Tree<Directory>(root);
+    fileTree = nullptr;
 }
 
 template <class T>
@@ -110,7 +110,6 @@ void XMLLoader<T>::makeTree() {
                 prevTag = tag;
                 iter.childEnd();
                 iter.down();
-             //   iter.down();
             }
             if (tag == "file") {
                 prevTag = tag;
@@ -121,7 +120,16 @@ void XMLLoader<T>::makeTree() {
                 int openingTag = content.find("<");
                 string name = content.substr(0, openingTag);
 				Directory dir(name);
-				iter.appendChild(dir);
+                if (iter.node == nullptr)
+                {
+                    fileTree = iter.node = new Tree<Directory>(dir);
+                    iter.resetIterator();
+                }
+				else
+				{
+                    iter.appendChild(dir);
+				}
+				
 				prevTag = tag;
             }
             if (tag == "name" && prevTag == "file") {
@@ -149,34 +157,8 @@ void XMLLoader<T>::makeTree() {
 
 			}
             if (tag == "/dir") {
-              //  iter.childBack();
-              //  iter.up();
                 iter.up();
             }
         }
     }
-}
-template <class T>
-void XMLLoader<T>::printTreeStructure(TreeIterator<Directory> iter)
-{
-    cout << iter.item().getName() << endl; 
-	iter.childForth(); 
-	while (!iter.childValid())
-	{
-		printTreeStructure(iter);
-		iter.childForth();
-	}
-	iter.childBack();
-}
-template <class T>
-void XMLLoader<T>::printFiles(TreeIterator<Directory> iter)
-{
-    iter.item().printFiles();
-	iter.childForth();
-	while (!iter.childValid())
-	{
-		printFiles(iter);
-		iter.childForth();
-	}
-	iter.childBack();
 }
