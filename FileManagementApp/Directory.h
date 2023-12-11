@@ -24,6 +24,7 @@ class Directory {
 		File* getFile(int index);
 		string getFilesNames();
 		vector<File*>& getFiles();
+		int getFilesSize();
 };
 
 Directory::Directory() {
@@ -96,13 +97,24 @@ File* Directory::getFile(int index) {
 
 string Directory::getFilesNames() {
 	string names = "";
+	if(files.size() == 0){
+		return "No files in directory";
+	}
 	vector<File*>::iterator it = files.begin();
 	for(it;it<files.end();it++){
-		names += (*it)->getName() + "\n";
+		names += (*it)->getName() + " <" + (*it)->getLength() +"> " + (*it)->getType() + "\n";
 	}
 	return names;
 }
 
 vector<File*>& Directory::getFiles() {
 	return files;
+}
+
+int Directory::getFilesSize() {
+	int size = 0;
+	for (int i = 0; i < files.size(); i++) {
+		size += stoi(files[i]->getLength());
+	}
+	return size;
 }

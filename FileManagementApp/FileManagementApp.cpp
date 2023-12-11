@@ -5,6 +5,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <queue>
 #include "XMLLoader.h"
 #include "../Trees/Tree.h"
 #include "../Trees/TreeIterator.h"
@@ -45,9 +46,10 @@ int main()
 		int choice = 0;
 		cout << "----------------------------------" << endl;
 		cout << "1. Display the tree" << endl;
-		cout << "2. Display the files in a directory" << endl;
-		cout << "3. Display the files in a directory and its subdirectories" << endl;
-		cout << "4. Exit" << endl;
+		cout << "2. Count the amount of files within a directory" << endl;
+		cout << "3. Display the files in a directory and total memory used" << endl;
+		cout << "4. Display the files in a directory and its subdirectories" << endl;
+		cout << "5. Exit" << endl;
 		cout << "----------------------------------" << endl;
 		cin >> choice;
 		switch (choice) {
@@ -57,31 +59,30 @@ int main()
 			break;
 		}
 		case 2: {
-			string dirName;
-			cout << "Enter the name of the directory: ";
-			cin >> dirName;
-			TreeIterator<Directory> iter(xmlfile.fileTree);
-			if (iter.childValid())
-			{
-				while (iter.childValid())
-				{
-					TreeIterator<Directory> iter2(iter.childIter.currentNode->data);
-					cout << "*" << iter2.item().getName() << "*" << endl;
-					cout << "*" << dirName << "*" << endl;
-					if (iter2.item().getName() == dirName) {
-						cout << "yes" << endl;
-						break;
-					}
-					else {
-						cout << "no" << endl;
-					}
-					iter.childForth();
-				}
-			}
-			cout << endl;
 			break;
 		}
 		case 3: {
+			string dirName;
+			cout << "Enter the name of the directory: ";
+			cin >> dirName;
+			queue<Tree<Directory>*> queue;
+			queue.push(xmlfile.fileTree);
+			while (!queue.empty())
+			{
+				DListIterator<Tree<Directory>*> iter = queue.front()->children->getIterator();
+				while (iter.isValid())
+				{
+					queue.push(iter.item());
+					iter.advance();
+				}
+				if (queue.front()->data.getName() == dirName) {
+					cout << "Files in " << dirName << ":" << endl;
+					cout << queue.front()->data.getFilesNames() << endl;
+					cout << queue.front()->data.getFilesSize() << "b" << endl;
+				}
+				queue.pop();
+			}
+			cout << endl;
 			break;
 		}
 		case 4: {

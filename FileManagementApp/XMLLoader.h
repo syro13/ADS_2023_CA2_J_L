@@ -22,15 +22,12 @@ class XMLLoader
     void setFileName(string fileName) { this->fileName = fileName; }
 	bool load();
     void makeTree();
-    void printTreeStructure(TreeIterator<Directory> iter);
-    void printFiles(TreeIterator<Directory> iter);
 };
 
 template <class T>
 XMLLoader<T>::XMLLoader(string fileName)
 {
 	this->fileName = fileName;
-    Directory root("Root");
     fileTree = nullptr;
 }
 

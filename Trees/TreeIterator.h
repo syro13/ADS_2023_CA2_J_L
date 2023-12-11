@@ -196,11 +196,15 @@ void TreeIterator<Directory>::addToVector(File* file)
 string TreeIterator<Directory>::getFilesNames(string indent)
 {
 	string names = "";
-	for (int i = 0; i < item().files.size(); i++)
-	{
-		names += indent + item().files[i]->getName() + " <" + item().files[i]->getLength() + "> " + item().files[i]->getType() + "\n";
+	if (item().files.size() == 0) {
+		names = indent + "No files in this folder\n";
 	}
-	
+	else {
+		for (int i = 0; i < item().files.size(); i++)
+		{
+			names += indent + item().files[i]->getName() + " <" + item().files[i]->getLength() + "> " + item().files[i]->getType() + "\n";
+		}
+	}
 	return names;
 }
 
@@ -209,9 +213,6 @@ string TreeIterator<Directory>::getNodeInfo(string indent)
 	string info = "";
 	info += "Folder: " + item().getName() + "\n";
 	info += indent + "Files: \n";
-	if(item().getFilesCount() == 0)
-		info += indent + "No files in this folder\n";
-	else
-		info += getFilesNames(indent);
+	info += getFilesNames(indent);
 	return info;
 }
