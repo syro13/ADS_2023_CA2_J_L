@@ -26,7 +26,7 @@ public:
 	void removeChild();
 	bool childValid();
 	T childItem();
-	T item();
+	T& item();
 	void addToVector(File* file);
 	string getFilesNames();
 	string getNodeInfo();
@@ -180,35 +180,34 @@ T TreeIterator<T>::childItem()
 }
 
 template <class T>
-T TreeIterator<T>::item()
+T& TreeIterator<T>::item()
 {
 	return node->data;
 }
 
-template <class T>
-void TreeIterator<T>::addToVector(File* file)
+void TreeIterator<Directory>::addToVector(File* file)
 {
-	childIter.item()->data.files.push_back(file);
+	cout << "Adding file to vector" << endl;
+	cout << "Directory: " << childIter.item()->data.getName() << endl;
+	
+	childIter.item()->data.addFile(file);
 }
 
-template <class T>
-string TreeIterator<T>::getFilesNames()
+string TreeIterator<Directory>::getFilesNames()
 {
 	string names = "";
-	if (childIter.item() != nullptr) {
-		for (int i = 0; i < childIter.item()->data.files.size(); i++)
-		{
-				names += childIter.item()->data.files[i]->getName() + "\n";
-		}
+	for (int i = 0; i < item().files.size(); i++)
+	{
+		names += item().files[i]->getName() + "\n";
 	}
+	
 	return names;
 }
 
-template <class T>
-string TreeIterator<T>::getNodeInfo()
+string TreeIterator<Directory>::getNodeInfo()
 {
 	string info = "";
-	info += "Name: " + childIter.item()->data.getName() + "\n";
+	info += "Name: " + item().getName() + "\n";
 	info += "Files: \n";
 	info += getFilesNames();
 	return info;

@@ -31,7 +31,7 @@ void printTree(Tree<Directory>* tree) {
 }
 
 void displayTree(TreeIterator<Directory> iter, string indent) {
-	cout << indent << iter.getNodeInfo();
+	cout << iter.getNodeInfo() << endl;
 	if (iter.childValid())
 	{
 		cout << "(" << endl;
