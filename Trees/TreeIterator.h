@@ -1,5 +1,7 @@
 #pragma once
 #include "Tree.h"
+#include "../FileManagementApp/Directory.h"
+#include "../FileManagementApp/File.h"
 
 template <class T>
 class TreeIterator
@@ -24,7 +26,10 @@ public:
 	void removeChild();
 	bool childValid();
 	T childItem();
-	T item();
+	T& item();
+	void addToVector(File* file);
+	string getFilesNames();
+	string getNodeInfo();
 };
 template <class T>
 TreeIterator<T>::TreeIterator(Tree<T>* root)
@@ -171,11 +176,39 @@ bool TreeIterator<T>::childValid()
 template <class T>
 T TreeIterator<T>::childItem()
 {
-	return childIter->node->data;
+	return childIter.item()->data;
 }
 
 template <class T>
-T TreeIterator<T>::item()
+T& TreeIterator<T>::item()
 {
 	return node->data;
+}
+
+void TreeIterator<Directory>::addToVector(File* file)
+{
+	cout << "Adding file to vector" << endl;
+	cout << "Directory: " << childIter.item()->data.getName() << endl;
+	
+	childIter.item()->data.addFile(file);
+}
+
+string TreeIterator<Directory>::getFilesNames()
+{
+	string names = "";
+	for (int i = 0; i < item().files.size(); i++)
+	{
+		names += item().files[i]->getName() + "\n";
+	}
+	
+	return names;
+}
+
+string TreeIterator<Directory>::getNodeInfo()
+{
+	string info = "";
+	info += "Name: " + item().getName() + "\n";
+	info += "Files: \n";
+	info += getFilesNames();
+	return info;
 }

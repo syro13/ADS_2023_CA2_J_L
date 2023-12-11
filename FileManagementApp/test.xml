@@ -8,14 +8,9 @@
 			<type>config</type>
 		</file>
 		<file>
-			<name>description</name>
-			<length>73 b</length>
-			<type>description</type>
-		</file>
-		<file>
-			<name>HEAD</name>
-			<length>23 b</length>
-			<type>HEAD</type>
+			<name>config1</name>
+			<length>353 b</length>
+			<type>config</type>
 		</file>
 	</dir>
 	<dir>
@@ -29,20 +24,5 @@
 	</dir>
 	<dir>
 		<name>Debug</name>
-		<file>
-			<name>SinglyLinkedList.pdb</name>
-			<length>978944 b</length>
-			<type>pdb</type>
-		</file>
-		<file>
-			<name>TestSinglyLinkedList.exp</name>
-			<length>41528 b</length>
-			<type>exp</type>
-		</file>
-		<file>
-			<name>TestSinglyLinkedList.pdb</name>
-			<length>1945600 b</length>
-			<type>pdb</type>
-		</file>
 	</dir>
 </dir>

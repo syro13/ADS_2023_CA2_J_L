@@ -14,13 +14,16 @@ class Directory {
 		void setName(string name);
 		string getName();
 		void print();
-		vector<File*> files;
+		vector<File*> files = vector<File*>(); 
 		void addFile(File* file);
 		void removeFile(File* file);
 		void removeFile(string name);
 		void printFiles();
 		int getFilesCount();
 		File* getFile(string name);
+		File* getFile(int index);
+		string getFilesNames();
+		vector<File*>& getFiles();
 };
 
 Directory::Directory() {
@@ -44,13 +47,15 @@ void Directory::print() {
 }
 
 void Directory::addFile(File* file) {
+	cout << "Adding file: " << file->getName() << " to Directory: " << this->name << endl;
 	files.push_back(file);
+	cout << "File count: " << files.size() << endl;
 }
 
 void Directory::removeFile(File* file) {
 	for (int i = 0; i < files.size(); i++) {
-		if (files[i] == file) {
-			files.erase(files.begin() + i);
+		if (this->files[i] == file) {
+			this->files.erase(files.begin() + i);
 		}
 	}
 
@@ -58,7 +63,7 @@ void Directory::removeFile(File* file) {
 
 void Directory::removeFile(string name) {
 	for (int i = 0; i < files.size(); i++) {
-		if (files[i]->getName() == name) {
+		if (this->files[i]->getName() == name) {
 			files.erase(files.begin() + i);
 		}
 	}
@@ -66,8 +71,9 @@ void Directory::removeFile(string name) {
 }
 
 void Directory::printFiles() {
-	for (int i = 0; i < files.size(); i++) {
-		cout << "File: " << files[i]->getName() << endl;
+	cout << "Files: " << endl;
+	for (const auto& file : files) {
+		cout << "File: " << file->getName() << endl;
 	}
 }
 
@@ -81,5 +87,22 @@ File* Directory::getFile(string name) {
 			return files[i];
 		}
 	}
-	return NULL;
+	return nullptr;
+}
+
+File* Directory::getFile(int index) {
+	return files[index];
+}
+
+string Directory::getFilesNames() {
+	string names = "";
+	vector<File*>::iterator it = files.begin();
+	for(it;it<files.end();it++){
+		names += (*it)->getName() + "\n";
+	}
+	return names;
+}
+
+vector<File*>& Directory::getFiles() {
+	return files;
 }
