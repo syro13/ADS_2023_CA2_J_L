@@ -188,9 +188,9 @@ T& TreeIterator<T>::item()
 void TreeIterator<Directory>::addToVector(File* file)
 {
 	cout << "Adding file to vector" << endl;
-	cout << "Directory: " << childIter.item()->data.getName() << endl;
+	cout << "Directory: " << node->data.getName() << endl;
 	
-	childIter.item()->data.addFile(file);
+	node->data.addFile(file);
 }
 
 string TreeIterator<Directory>::getFilesNames(string indent)

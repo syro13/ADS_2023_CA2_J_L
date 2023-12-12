@@ -44,19 +44,30 @@ void printDFS(TreeIterator<Directory> iter)
 
 void prune(TreeIterator<Directory> iter)
 {
+	//TreeIterator<Directory> itertemp(iter);
 	while (iter.childValid())
 	{
-		TreeIterator<Directory> iter2(iter.childIter.currentNode->data);
+		TreeIterator<Directory> iter2(iter);
+		iter2.down();
 		prune(iter2); 
-		iter.childForth();
+		//iter2.resetIterator();
+		//cout << iter.getNodeInfo("") << endl;
+		cout << iter.childValid() << endl;
+		DListIterator<Tree<Directory>*> iter3 = iter.childIter.currentNode->data->children->getIterator();
+		if (!iter3.isValid() && iter.childItem().getFilesCount() == 0)
+		{
+			iter.removeChild();
+		}
+		else
+		{
+			iter.childForth();
+		}
 		
 	}
-	cout << iter.getNodeInfo("") << endl;
-	cout << "file count: " << iter.item().getFilesCount() << endl;
-	if (iter.item().getFilesCount() == 0)
-	{
-		iter.removeChild();
-	}
+	
+	
+	//cout << "file count: " << iter.childItem().getFilesCount() << endl;
+	
 }
 int main()
 { 

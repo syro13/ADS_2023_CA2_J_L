@@ -105,8 +105,7 @@ void XMLLoader<T>::makeTree() {
             string tag = line.substr(openingTag + 1, closingTag - openingTag - 1);
             if (tag == "dir") {
                 prevTag = tag;
-                iter.childEnd();
-                iter.down();
+                
             }
             if (tag == "file") {
                 prevTag = tag;
@@ -121,10 +120,13 @@ void XMLLoader<T>::makeTree() {
                 {
                     fileTree = iter.node = new Tree<Directory>(dir);
                     iter.resetIterator();
+                   
                 }
 				else
 				{
                     iter.appendChild(dir);
+                    iter.childEnd();
+                    iter.down();
 				}
 				
 				prevTag = tag;
