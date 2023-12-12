@@ -2,30 +2,17 @@
 C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\Directory.h(82,19): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
   (compiling source file 'FileManagementApp.cpp')
   
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(102,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'FileManagementApp.cpp')
-  C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(102,24):
-  the template instantiation context (the oldest one first) is
-  	C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(40,20):
-  	see reference to class template instantiation 'XMLLoader<std::string>' being compiled
-  	C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(94,31):
-  	while compiling class template member function 'void XMLLoader<std::string>::makeTree(void)'
-  		C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(42,18):
-  		see the first reference to 'XMLLoader<std::string>::makeTree' in 'main'
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(53,35): error C2679: binary '&&': no operator found which takes a right-hand operand of type 'T' (or there is no acceptable conversion)
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(53,35): error C2679:         with
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(53,35): error C2679:         [
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(53,35): error C2679:             T=Directory
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(53,35): error C2679:         ]
+  C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(53,35):
+  could be 'built-in C++ operator&&(bool, bool)'
+  C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(53,35):
+  while trying to match the argument list '(bool, T)'
+          with
+          [
+              T=Directory
+          ]
   
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(103,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'FileManagementApp.cpp')
-  
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(117,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'FileManagementApp.cpp')
-  
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(134,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'FileManagementApp.cpp')
-  
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(140,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'FileManagementApp.cpp')
-  
-C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(146,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  (compiling source file 'FileManagementApp.cpp')
-  
-  FileManagementApp.vcxproj -> C:\Program Files\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementApp.exe

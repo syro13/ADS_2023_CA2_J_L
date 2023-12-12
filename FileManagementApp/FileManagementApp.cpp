@@ -31,7 +31,33 @@ void displayTree(TreeIterator<Directory> iter, string indent) {
 	}
 	cout << endl;
 }
+void printDFS(TreeIterator<Directory> iter)
+{
+	while (iter.childValid())
+	{
+		TreeIterator<Directory> iter2(iter.childIter.currentNode->data);
+		printDFS(iter2);
+		iter.childForth();
+	}
+	cout << iter.getNodeInfo("") << ", ";
+}
 
+void prune(TreeIterator<Directory> iter)
+{
+	while (iter.childValid())
+	{
+		TreeIterator<Directory> iter2(iter.childIter.currentNode->data);
+		prune(iter2); 
+		iter.childForth();
+		
+	}
+	cout << iter.getNodeInfo("") << endl;
+	cout << "file count: " << iter.item().getFilesCount() << endl;
+	if (iter.item().getFilesCount() == 0)
+	{
+		iter.removeChild();
+	}
+}
 int main()
 { 
 	bool appOn = true;
@@ -42,13 +68,14 @@ int main()
 	xmlfile.makeTree();
 	TreeIterator<Directory> iter2(xmlfile.fileTree);
 	displayTree(iter2, "");
+	printDFS(xmlfile.fileTree);
 	while (appOn) {
 		int choice = 0;
 		cout << "----------------------------------" << endl;
 		cout << "1. Display the tree" << endl;
 		cout << "2. Count the amount of files within a directory" << endl;
 		cout << "3. Display the files in a directory and total memory used" << endl;
-		cout << "4. Display the files in a directory and its subdirectories" << endl;
+		cout << "4. Prune directories" << endl;
 		cout << "5. Exit" << endl;
 		cout << "----------------------------------" << endl;
 		cin >> choice;
@@ -117,9 +144,18 @@ int main()
 			break;
 		}
 		case 4: {
+			TreeIterator<Directory> treeIter(xmlfile.fileTree);
+			displayTree(treeIter, "");
+			prune(treeIter);
+			treeIter = TreeIterator<Directory>(xmlfile.fileTree);
+			displayTree(treeIter, "");
+			break;
+		}
+		case 5: {
 			appOn = false;
 			break;
 		}
 		}
 	}
+
 }

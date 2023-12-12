@@ -24,5 +24,14 @@
 	</dir>
 	<dir>
 		<name>Debug</name>
+		<dir>
+			<name>.vs2</name>
+			<dir>
+				<name>ADS_Single_LinkedList_Exercises2</name>
+				<dir>
+					<name>v173</name>
+				</dir>
+			</dir>
+		</dir>
 	</dir>
 </dir>
