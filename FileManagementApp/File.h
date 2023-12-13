@@ -5,20 +5,21 @@
 
 using namespace std;
 
-class File : public TreeNode
+class File
 {
+	string name;
 	string length;
 	string type;
 public:
 	File();
 	File(string name, string length, string type);
-	void setName(string name) override;
+	void setName(string name);
 	void setLength(string length);
 	void setType(string type);
-	string getName() override;
+	string getName();
 	string getLength();
 	string getType();
-	void print() override;
+	void print();
 };
 
 File::File() {

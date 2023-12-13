@@ -1,11 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\FileManagementApp",
-    "\\FileManagementTest",
-    "\\x64",
     "\\x64\\Debug"
   ],
-  "SelectedNode": "\\FileManagementApp\\XMLLoader.h",
   "PreviewInSolutionExplorer": false
 }
