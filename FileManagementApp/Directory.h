@@ -25,6 +25,7 @@ class Directory {
 		string getFilesNames();
 		vector<File*>& getFiles();
 		int getFilesSize();
+		string getFilesInfo(string indent);
 };
 
 Directory::Directory() {
@@ -48,9 +49,7 @@ void Directory::print() {
 }
 
 void Directory::addFile(File* file) {
-	cout << "Adding file: " << file->getName() << " to Directory: " << this->name << endl;
 	files.push_back(file);
-	cout << "File count: " << files.size() << endl;
 }
 
 void Directory::removeFile(File* file) {
@@ -84,7 +83,7 @@ int Directory::getFilesCount() {
 
 File* Directory::getFile(string name) {
 	for (int i = 0; i < files.size(); i++) {
-		if (files[i]->getName() == name) {
+		if (files[i]->getName().find(name) != string::npos) {
 			return files[i];
 		}
 	}
@@ -98,15 +97,26 @@ File* Directory::getFile(int index) {
 string Directory::getFilesNames() {
 	string names = "";
 	if(files.size() == 0){
-		return "No files in directory";
+		return "No files in directory\n";
 	}
 	vector<File*>::iterator it = files.begin();
 	for(it;it<files.end();it++){
-		names += (*it)->getName() + " <" + (*it)->getLength() +"> " + (*it)->getType() + "\n";
+		names += (*it)->getName();
 	}
 	return names;
 }
 
+string Directory::getFilesInfo(string indent) {
+	string names = "";
+	if (files.size() == 0) {
+		return indent + "No files in directory\n";
+	}
+	vector<File*>::iterator it = files.begin();
+	for (it; it < files.end(); it++) {
+		names += indent + (*it)->getName() + " <" + (*it)->getLength() + "> " + (*it)->getType() + "\n";
+	}
+	return names;
+}
 vector<File*>& Directory::getFiles() {
 	return files;
 }

@@ -69,6 +69,52 @@ void prune(TreeIterator<Directory> iter)
 	//cout << "file count: " << iter.childItem().getFilesCount() << endl;
 	
 }
+string getPath(TreeIterator<Directory> iter, string path, string fileName) {
+	while (iter.childValid())
+	{
+		TreeIterator<Directory> iter2(iter.childIter.currentNode->data);
+		path = getPath(iter2, path, fileName);
+		iter.childForth();
+	}
+	if (iter.item().getFilesNames().find(fileName) != string::npos || iter.item().getName().find(fileName) != string::npos) {
+		Tree<Directory> *temp = iter.node;
+		while (temp->parent != nullptr) {
+			path = temp->data.getName() + "/" + path;
+			temp = temp->parent;
+		}
+		if (iter.item().getFilesNames().find(fileName) != string::npos) {
+			path += iter.item().getFile(fileName)->getName();
+		}
+		path += "\n";
+		return path; 
+	}
+	return path;
+
+	/*string root = tree->data.getName();
+	cout << root << endl;
+	queue<Tree<Directory>*> queue;
+	queue.push(tree);
+	while (!queue.empty())
+	{
+		DListIterator<Tree<Directory>*> iter = queue.front()->children->getIterator();
+		while (iter.isValid())
+		{
+			queue.push(iter.item());
+			iter.advance();
+		}
+		if (queue.front()->data.getFilesNames().find(fileName) != string::npos) {
+			string path = "";
+			Tree<Directory>* temp(queue.front());
+			while (temp->parent != nullptr) {
+				path = temp->data.getName() + "/" + path;
+				temp = temp->parent;
+			}
+			path += fileName;
+			return path;
+		}
+		queue.pop();
+	}*/
+}
 int main()
 { 
 	bool appOn = true;
@@ -78,8 +124,6 @@ int main()
 	bool result = xmlfile.load();
 	xmlfile.makeTree();
 	TreeIterator<Directory> iter2(xmlfile.fileTree);
-	displayTree(iter2, "");
-	printDFS(xmlfile.fileTree);
 	while (appOn) {
 		int choice = 0;
 		cout << "----------------------------------" << endl;
@@ -87,7 +131,9 @@ int main()
 		cout << "2. Count the amount of files within a directory" << endl;
 		cout << "3. Display the files in a directory and total memory used" << endl;
 		cout << "4. Prune directories" << endl;
-		cout << "5. Exit" << endl;
+		cout << "5. Print path to file" << endl;
+		cout << "6. Display the contents of a folder" << endl;
+		cout << "7. Exit" << endl;
 		cout << "----------------------------------" << endl;
 		cin >> choice;
 		switch (choice) {
@@ -146,7 +192,7 @@ int main()
 				}
 				if (queue.front()->data.getName() == dirName) {
 					cout << "Files in " << dirName << ":" << endl;
-					cout << queue.front()->data.getFilesNames() << endl;
+					cout << queue.front()->data.getFilesInfo("") << endl;
 					cout << queue.front()->data.getFilesSize() << "b" << endl;
 				}
 				queue.pop();
@@ -163,9 +209,44 @@ int main()
 			break;
 		}
 		case 5: {
-			appOn = false;
+			string fileName;
+			cout << "Enter the name of the file: ";
+			cin >> fileName;
+			/*	*/
+
+			TreeIterator<Directory> iter(xmlfile.fileTree);
+			string path = getPath(iter, "", fileName);
+			cout << path << endl;
 			break;
 		}
+		case 6: {
+			string dirName;
+			cout << "Enter the name of the directory: ";
+			cin >> dirName;
+			queue<Tree<Directory>*> queue;
+			queue.push(xmlfile.fileTree);
+			while (!queue.empty())
+			{
+				DListIterator<Tree<Directory>*> iter = queue.front()->children->getIterator();
+				while (iter.isValid())
+				{
+					queue.push(iter.item());
+					iter.advance();
+				}
+				if (queue.front()->data.getName() == dirName) {
+					cout << "Files in " << dirName << ":" << endl;
+					cout << queue.front()->data.getFilesInfo("") << endl;
+					cout << "Total memory used: " << queue.front()->data.getFilesSize() << "b" << endl;
+				}
+				queue.pop();
+			}
+			cout << endl;
+			break;	
+		}
+		case 7: {
+				  appOn = false;
+				  break;
+			  }
 		}
 	}
 

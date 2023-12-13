@@ -28,7 +28,7 @@ public:
 	T childItem();
 	T& item();
 	void addToVector(File* file);
-	string getFilesNames(string indent);
+	string getFilesInfo(string indent);
 	string getNodeInfo(string indent);
 };
 template <class T>
@@ -187,25 +187,12 @@ T& TreeIterator<T>::item()
 
 void TreeIterator<Directory>::addToVector(File* file)
 {
-	cout << "Adding file to vector" << endl;
-	cout << "Directory: " << node->data.getName() << endl;
-	
 	node->data.addFile(file);
 }
 
-string TreeIterator<Directory>::getFilesNames(string indent)
+string TreeIterator<Directory>::getFilesInfo(string indent)
 {
-	string names = "";
-	if (item().files.size() == 0) {
-		names = indent + "No files in this folder\n";
-	}
-	else {
-		for (int i = 0; i < item().files.size(); i++)
-		{
-			names += indent + item().files[i]->getName() + " <" + item().files[i]->getLength() + "> " + item().files[i]->getType() + "\n";
-		}
-	}
-	return names;
+	return item().getFilesInfo(indent);
 }
 
 string TreeIterator<Directory>::getNodeInfo(string indent)
@@ -213,6 +200,6 @@ string TreeIterator<Directory>::getNodeInfo(string indent)
 	string info = "";
 	info += "Folder: " + item().getName() + "\n";
 	info += indent + "Files: \n";
-	info += getFilesNames(indent);
+	info += getFilesInfo(indent);
 	return info;
 }

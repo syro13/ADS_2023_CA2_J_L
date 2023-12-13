@@ -1,1 +1,31 @@
-﻿  FileManagementApp.vcxproj -> C:\Users\LENOVO\Documents\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementApp.exe
+﻿  FileManagementApp.cpp
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\Directory.h(81,19): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'FileManagementApp.cpp')
+  
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(102,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'FileManagementApp.cpp')
+  C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(102,24):
+  the template instantiation context (the oldest one first) is
+  	C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(123,20):
+  	see reference to class template instantiation 'XMLLoader<std::string>' being compiled
+  	C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(94,31):
+  	while compiling class template member function 'void XMLLoader<std::string>::makeTree(void)'
+  		C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\FileManagementApp.cpp(125,18):
+  		see the first reference to 'XMLLoader<std::string>::makeTree' in 'main'
+  
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(103,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'FileManagementApp.cpp')
+  
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(116,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'FileManagementApp.cpp')
+  
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(136,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'FileManagementApp.cpp')
+  
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(142,20): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'FileManagementApp.cpp')
+  
+C:\Program Files\GitHub\ADS_2023_CA2_J_L\FileManagementApp\XMLLoader.h(148,32): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  (compiling source file 'FileManagementApp.cpp')
+  
+  FileManagementApp.vcxproj -> C:\Program Files\GitHub\ADS_2023_CA2_J_L\x64\Debug\FileManagementApp.exe
